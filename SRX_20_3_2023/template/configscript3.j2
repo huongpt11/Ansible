@@ -1,0 +1,10 @@
+set interfaces {{ int }} unit {{ unit_int }} vlan-id 20
+set interfaces {{ int }} unit {{ unit_int }} family inet address {{ ip_reth_new }}
+set security zones security-zone {{ zone_new }} interfaces {{ gateway_new }}
+set security address-book global address {{ name_APP }} {{ ip_APP }}
+set applications application {{ Name_Application }} protocol tcp
+set applications application {{ Name_Application }} destination-port {{ Application }}
+set security policies from-zone {{ Source_Zone }} to-zone {{ Dest_Zone }} policy {{ Policy_Name }} match source-address any
+set security policies from-zone {{ Source_Zone }} to-zone {{ Dest_Zone }} policy {{ Policy_Name }} match destination-address {{ name_APP }}
+set security policies from-zone {{ Source_Zone }} to-zone {{ Dest_Zone }} policy {{ Policy_Name }} match application {{ Name_Application }}
+set security policies from-zone {{ Source_Zone }} to-zone {{ Dest_Zone }} policy {{ Policy_Name }} then permit

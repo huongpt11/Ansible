@@ -1,0 +1,18 @@
+all:
+  hosts:
+    SRX1:
+      ansible_host: 10.96.189.189
+      name_APP: "192.168.10.100"
+      ip_APP: "192.168.10.100/32"
+      name_USER: "172.168.10.100"
+      ip_USER: "172.168.10.100/32"
+      Name_Application: "TCP_6666" 
+      Application: "6666"
+      Source_Zone: "OUTSIDE"
+      Dest_Zone: "INSIDE"
+      Policy_Name: "From_172_168_10_100_to_192_168_10_100"
+  vars:
+    juniper_user: juniper
+    juniper_password: juniper@123
+    ansible_connection: ansible.netcommon.network_cli
+    ansible_network_os: cisco.nxos.nxos

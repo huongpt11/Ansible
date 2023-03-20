@@ -1,0 +1,23 @@
+all:
+  hosts:
+    SRX:
+      ansible_host: 10.96.189.189
+      int: "reth1"
+      unit_int: "20"
+      gateway_new: "reth1.20"
+      ip_reth_new: "192.168.20.1/32"
+      zone_new: "INSIDE"
+      name_APP: "192.168.20.100"
+      ip_APP: "192.168.20.100/32"
+      name_USER: "172.168.10.100"
+      ip_USER: "172.168.10.100/32"
+      Name_Application: "TCP_6666" 
+      Application: "6666"
+      Source_Zone: "OUTSIDE"
+      Dest_Zone: "INSIDE"
+      Policy_Name: "From_172_168_10_100_to_192_168_20_100"
+  vars:
+    juniper_user: juniper
+    juniper_password: juniper@123
+    ansible_connection: ansible.netcommon.network_cli
+    ansible_network_os: cisco.nxos.nxos
