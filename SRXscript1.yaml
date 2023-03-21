@@ -37,7 +37,7 @@
         confirmed: true
         retrieve: 'committed'
 
-    - name: STEP6_SRX config
+    - name: STEP5_SRX config
       juniper_junos_config:
         config_mode: 'private' #Open a candidate configuration database
         load: 'set' #configuration data into the candidate configuration database.
