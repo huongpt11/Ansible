@@ -5,12 +5,7 @@
     - juniper.junos
 
   tasks:
-    - name: STEP1_ICMP    
-      shell: "/usr/bin/ping -W1 -c5 {{ ansible_host }} "
-      delegate_to: localhost
-      ignore_errors: yes
-
-    - name: STEP2_Generate Credential
+    - name: STEP1_Generate Credential
       set_fact: #module 
         credential: #login to device
           username: "{{ juniper_user }}"
@@ -18,7 +13,7 @@
           host: "{{ '{{' }} ansible_host {{ '}}' }}"       
         delegate_to: localhost
 
-    - name: STEP3_Show configure all device
+    - name: STEP2_Show configure all device
       juniper_junos_command: 
         provider: "{{ credential }}"
         commands:
@@ -26,12 +21,12 @@
         format: xml
         dest: "/tmp/{{ inventory_hostname }}.commands.output"
 
-    - name: STEP4_Template a file
+    - name: STEP3_Template a file
       ansible.builtin.template:
         src: /root/template/configscript3.j2
         dest: /root/template/script3_{{ inventory_hostname }}.conf
 
-    - name: STEP5_SRX config_test
+    - name: STEP4_SRX config_test
       juniper_junos_config:
         config_mode: 'private' #Open a candidate configuration database
         load: 'set' #configuration data into the candidate configuration database.
@@ -43,7 +38,7 @@
         confirmed: true
         retrieve: 'committed'
 
-    - name: STEP6_SRX config
+    - name: STEP5_SRX config
       juniper_junos_config:
         config_mode: 'private' #Open a candidate configuration database
         load: 'set' #configuration data into the candidate configuration database.
