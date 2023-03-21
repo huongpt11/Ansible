@@ -33,7 +33,7 @@
 
     - name: STEP5_SRX config_test
       juniper_junos_config:
-        config_mode: 'private' #Open a candidate configuration database
+        config_mode: 'exclusive' #Open a candidate configuration database
         load: 'set' #configuration data into the candidate configuration database.
         diff: true
         commit: true
